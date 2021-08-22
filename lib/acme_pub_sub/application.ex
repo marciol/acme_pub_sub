@@ -13,7 +13,7 @@ defmodule AcmePubSub.Application do
       {Task.Supervisor, name: AcmePubSub.TaskSupervisor},
       %{
         id: AcmePubSub.ClientStorage,
-        start: {Agent, :start_link, [fn -> [] end, [name: AcmePubSub.ClientStorage]]}
+        start: {Agent, :start_link, [fn -> [] end, [name: AcmePubSub.ConnectedClients]]}
       },
       Supervisor.child_spec({Task, fn -> AcmePubSub.accept(port) end}, restart: :permanent)
     ]
